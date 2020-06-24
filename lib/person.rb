@@ -1,8 +1,9 @@
-# your code goes here
 require 'pry'
+
+
 class Person
-    attr_accessor :bank_account
-    attr_reader :name, :happiness, :hygiene
+    attr_reader :name
+    attr_accessor :bank_account, :happiness, :hygiene
     
     def initialize(name)
         @name = name
@@ -11,24 +12,12 @@ class Person
         @hygiene = 8
     end
 
-    def happiness=(happiness)
-        @happiness = happiness
-        case 
-        when happiness > 10
-            @happiness = 10
-        when happiness < 0
-            @happiness = 0
-        end
+    def hygiene=(hygiene)
+        @hygiene = stat_changer(hygiene)
     end
 
-    def hygiene=(hygiene)
-        @hygiene = hygiene
-        case 
-        when @hygiene > 10
-            @hygiene = 10
-        when @hygiene < 0
-            @hygiene = 0
-        end
+    def happiness=(happiness)
+        @happiness = stat_changer(happiness)
     end
 
     def happy?
@@ -40,7 +29,7 @@ class Person
     end
 
     def get_paid(salary)
-        self.bank_account += salary
+        @bank_account += salary
         "all about the benjamins"
     end
 
@@ -56,7 +45,7 @@ class Person
     end
 
     def call_friend(friend)
-        social_happiness(friend, +3)
+        social_happiness(friend, 3)
         "Hi #{friend.name}! It's #{self.name}. How are you?"
     end
 
@@ -68,15 +57,23 @@ class Person
         when "weather"
             social_happiness(friend, 1)
             "blah blah sun blah rain"
-        else
-            "blah blah blah blah blah"
+        else "blah blah blah blah blah"
         end
     end
 
     private
 
-    def social_happiness(friend, change)
-        self.happiness += (change)
-        friend.happiness += (change)
+    def stat_changer(modified_stat, min=0, max=10)
+        modified_stat = max if modified_stat > 10
+        modified_stat = min if modified_stat < 0
+        modified_stat
     end
+
+    def social_happiness(friend, change)
+        self.happiness += change
+        friend.happiness += change
+    end
+
 end
+
+p1 = Person.new("John")
