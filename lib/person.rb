@@ -24,11 +24,11 @@ class Person
   end
 
   def clean?
-    self.hygiene > 7
+    hygiene > 7
   end
 
   def happy?
-    self.happiness > 7
+    happiness > 7
   end
 
   def get_paid(salary)
@@ -50,18 +50,18 @@ class Person
   def call_friend(friend)
     self.happiness += 3
     friend.happiness += 3
-    "Hi #{friend.name}! It's #{self.name}. How are you?"
+    "Hi #{friend.name}! It's #{name}. How are you?"
   end
 
   def start_conversation(person, topic)
     case topic
     when 'politics'
-      self.happiness -= happiness=(2)
-      person.happiness -= happiness=(2)
+      self.happiness -= happiness = 2
+      person.happiness -= happiness = 2
       'blah blah partisan blah lobbyist'
     when 'weather'
-      self.happiness += happiness=(1)
-      person.happiness += happiness=(1)
+      self.happiness += happiness = 1
+      person.happiness += happiness = 1
       'blah blah sun blah rain'
     else
       'blah blah blah blah blah'
