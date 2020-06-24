@@ -56,26 +56,17 @@ class Person
     end
 
     def call_friend(friend)
-        self.happiness += 3
-        friend.happiness += 3
+        social_happiness(friend, +3)
         "Hi #{friend.name}! It's #{self.name}. How are you?"
-    end
-
-    def mee(friend, change)
-        self.happiness += (change)
-        friend.happiness += (change)
     end
 
     def start_conversation(friend, topic)
         case topic
         when "politics"
-            # self.happiness -= 2
-            # friend.happiness -= 2
             social_happiness(friend, -2)
             "blah blah partisan blah lobbyist"
         when "weather"
-            self.happiness += 1
-            friend.happiness += 1
+            social_happiness(friend, 1)
             "blah blah sun blah rain"
         else
             "blah blah blah blah blah"
