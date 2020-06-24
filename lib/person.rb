@@ -1,22 +1,23 @@
 require 'pry'
 
 class Person
-    attr_reader :name,
-    attr_accessor :balance, :happiness_points, :hygiene_points
 
-    def initialize(name,balance,happiness_points,hygiene_points)
+    attr_reader :name
+    attr_accessor :bank_account, :happiness, :hygiene
+
+    def initialize(name)
         @name=name
-        @balance=balance
-        @happiness_points=happiness_points
-        @hygiene_points=hygiene_points
+        @bank_account=25
+        @happiness=8
+        @hygiene=8
     end
 
     def clean?
-        self.hygiene_points>7
+        self.hygiene>7
     end
 
     def happy?
-        self.happiness_points>7
+        self.happiness>7
     end
 
     def get_paid(salary)
@@ -25,19 +26,19 @@ class Person
     end
 
     def take_bath
-        if hygiene_points < 7
-            self.hygiene_points += 4
+        if hygiene < 7
+            self.hygiene += 4
             "♪ Rub-a-dub just relaxing in the tub ♫"
         end    
     end
     
     def work_out
-        if hygiene_points >= 3
-            self.hygiene_points +- 3
+        if hygiene >= 3
+            self.hygiene +- 3
         end
         
-        if happiness_points <= 8
-            self.happiness_points += 2
+        if happiness <= 8
+            self.happiness += 2
         end
 
         "♪ another one bites the dust ♫"
@@ -45,14 +46,14 @@ class Person
 
     def call_friend(friend)
         
-        if self.happiness_points <= 7
-            self.happiness_points += 3
+        if self.happiness <= 7
+            self.happiness += 3
         end
         
-        if friend.happiness_points <= 7
-            friend.happiness_points += 3
+        if friend.happiness <= 7
+            friend.happiness += 3
         end
-        binding.pry
+        #binding.pry
 
         "Hi #{friend.name}! It's #{self.name}. How are you?"
 
