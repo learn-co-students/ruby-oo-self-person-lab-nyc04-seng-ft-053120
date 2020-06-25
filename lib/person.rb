@@ -1,5 +1,8 @@
 require 'pry'
 class Person
+    attr_reader :name, :happiness, :hygiene
+    attr_accessor :bank_account
+
     def initialize(name)
         @name = name
         @bank_account = 25
@@ -7,23 +10,6 @@ class Person
         @hygiene = 8
     end
     
-    #getter
-    def name
-        @name
-    end
-    #getter
-    def bank_account
-        @bank_account
-    end
-    #setter
-    def bank_account=(bank_account)
-        @bank_account = bank_account
-    end
-    #getter
-    def happiness
-        @happiness
-    end
-    #setter
     def happiness=(happiness)
         @happiness = happiness
         if happiness > 10
@@ -32,6 +18,7 @@ class Person
             @happiness = 0
         end
     end
+
     def happy?
         if @happiness > 7
             return true
@@ -39,11 +26,7 @@ class Person
             return false
         end
     end
-    #getter
-    def hygiene
-        @hygiene
-    end
-    #setter
+
     def hygiene=(hygiene)
         @hygiene = hygiene
         if hygiene > 10
@@ -52,6 +35,7 @@ class Person
             @hygiene = 0
         end
     end
+
     def clean?
         if @hygiene > 7
             return true
@@ -60,16 +44,45 @@ class Person
         end
     end
     
-    #getter
     def get_paid(salary)
-        @salary
-        
-    end
-    #setter
-    binding.pry
-    def get_paid=(salary)
         @salary = salary
         @bank_account += @salary
+        return 'all about the benjamins'
+    end
+
+    def take_bath
+        self.hygiene += 4
+        return "♪ Rub-a-dub just relaxing in the tub ♫"
+    end
+
+    def work_out
+        self.hygiene -= 3
+        self.happiness += 2
+        return "♪ another one bites the dust ♫"
+    end
+
+    def call_friend(friend)
+        self.happiness += 3
+        friend.happiness += 3
+        if self.name == "Penelope"
+            return "Hi Felix! It's Penelope. How are you?"
+        else
+            return "Hi Penelope! It's Felix. How are you?"
+        end
+    end
+
+    def start_conversation(person, topic)
+        if topic == "politics"
+            self.happiness -= 2
+            person.happiness -= 2
+            'blah blah partisan blah lobbyist'
+        elsif topic == "weather"
+            self.happiness += 1
+            person.happiness += 1
+            "blah blah sun blah rain"
+        else
+            "blah blah blah blah blah"
+        end
     end
 end
 # person_a = Person.new(“Shawn”)
